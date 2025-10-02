@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useState, useEffect } from 'react'
-import ColorPicker from './ColorPicker'
+import ColorPicker from './colorPicker'
 import { colors as yColors, toggleSquare, setSquareColor } from './sync'
 
 export default function App() {
