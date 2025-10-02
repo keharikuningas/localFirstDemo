@@ -15,7 +15,7 @@
 //    - setSquareColor(i, hex): set an explicit color (used by the palette)
 
 import * as Y from 'yjs'
-import { WebrtcProvider } from 'y-webrtc'
+import { WebsocketProvider } from 'y-websocket'
 
 // ---- Room & transport configuration ----------------------------------------
 
@@ -37,14 +37,12 @@ export const ydoc = new Y.Doc()
 
 // WebRTC provider wires tabs together. The `signaling` URL is only used to
 // coordinate the initial peer connection; after that data flows P2P.
-export const provider = new WebrtcProvider(ROOM, ydoc, {
-  signaling: ['wss://signaling.yjs.dev'], // public signaling for internet
-  peerOpts: {
-    config: {
-      iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }]
-    }
-  }
-})
+export const provider = new WebsocketProvider(
+  'wss://<your-service>.onrender.com', // Render WebSocket URL
+  ROOM,
+  ydoc,
+  { connect: true }
+)
 
 // ---- Shared state: a grow-only ordered container of 64 color strings --------
 //
