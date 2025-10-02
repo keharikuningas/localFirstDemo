@@ -49,6 +49,7 @@ provider.on('status', e => console.log('[yjs] ws status:', e.status))
 // We store the board as a Y.Array named 'colors' with 64 items.
 // Index = cell id (0..63). Value = '#rrggbb' string.
 export const colors = ydoc.getArray('colors')
+const BOARD_CELLS = 64
 
 // ---- Initial state: seed exactly once --------------------------------------
 //
@@ -58,12 +59,10 @@ export const colors = ydoc.getArray('colors')
 // to be the leader; only that peer seeds *if the array is still empty*.
 
 function seedBoard() {
-  // A Yjs transaction groups multiple operations into a single change.
   ydoc.transact(() => {
     for (let r = 0; r < 8; r++) {
       for (let c = 0; c < 8; c++) {
-        // Alternate BLACK/WHITE for a chess pattern.
-        colors.push([ (r + c) % 2 ? BLACK : WHITE ])
+        colors.push([ (r + c) % 2 ? 'black' : 'white' ])
       }
     }
   })
@@ -72,6 +71,38 @@ function seedBoard() {
 // Debounced leader election: wait a beat so peers can announce themselves.
 // Then, if the array is still empty, the peer with the lowest clientID seeds.
 let seeded = false
+
+function maybeSeed() {
+  if (seeded || colors.length !== 0) return
+  const ids = [...provider.awareness.getStates().keys()]
+  if (ids.length === 0) return
+  const leader = Math.min(...ids)
+  if (provider.awareness.clientID === leader) {
+    seedBoard()
+    seeded = true
+  }
+}
+
+function normalizeBoard() {
+  if (colors.length > BOARD_CELLS) {
+    ydoc.transact(() => colors.delete(BOARD_CELLS, colors.length - BOARD_CELLS))
+  }
+}
+
+provider.on('synced', () => {
+  normalizeBoard()
+  maybeSeed()
+})
+
+provider.awareness.on('change', () => {
+  normalizeBoard()
+  maybeSeed()
+})
+
+colors.observeDeep(() => {
+  if (colors.length > BOARD_CELLS) normalizeBoard()
+})
+
 let electionTimer = null
 
 function electAndSeed() {
