@@ -38,7 +38,7 @@ export const ydoc = new Y.Doc()
 // WebRTC provider wires tabs together. The `signaling` URL is only used to
 // coordinate the initial peer connection; after that data flows P2P.
 export const provider = new WebsocketProvider(
-  'wss://localfirstdemo.onrender.com', // your Render websocket service
+  'wss://localfirstdemo.onrender.com/', //URL
   ROOM,
   ydoc,
   { connect: true }
