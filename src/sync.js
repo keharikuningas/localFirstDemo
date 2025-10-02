@@ -37,12 +37,12 @@ export const ydoc = new Y.Doc()
 
 // WebRTC provider wires tabs together. The `signaling` URL is only used to
 // coordinate the initial peer connection; after that data flows P2P.
-export const provider = new WebsocketProvider(
-  'wss://localfirstdemo.onrender.com/', //URL
-  ROOM,
-  ydoc,
-  { connect: true }
-)
+
+const WS_URL = 'wss://yws-server.onrender.com'
+
+export const provider = new WebsocketProvider(WS_URL, ROOM, ydoc, { connect: true })
+
+provider.on('status', e => console.log('[yjs] ws status:', e.status))
 
 // ---- Shared state: a grow-only ordered container of 64 color strings --------
 //
