@@ -14,6 +14,7 @@
     "react-dom": "^19.1.1",
     "ws": "^8.18.3",
     "y-webrtc": "^10.3.0",
+    "y-websocket": "^3.0.0",
     "yjs": "^13.6.27"
   },
   "devDependencies": {
