@@ -35,7 +35,7 @@ export default function App() {
   }
 
   return (
-    <div class = "container" style={{ textAlign: 'center', padding: 20 }}>
+    <div className = "container" style={{ textAlign: 'center', padding: 20 }}>
       <h2>Local-First CRDT Chessboard</h2>
       <p>Pick a color below, then click any square</p>
 
