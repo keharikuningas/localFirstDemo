@@ -42,9 +42,13 @@
 }
 
 body {
+  margin: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+}
+
+.container {
+  text-align: center; /* centers the text and buttons */
 }

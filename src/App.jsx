@@ -32,13 +32,12 @@ export default function App() {
     gridTemplateColumns: "repeat(8, 40px)",
     gridTemplateRows: "repeat(8, 40px)",
     border: "2px solid black",
-    margin: "0 auto",
   }
 
   return (
-    <div style={{ textAlign: 'center', padding: 20 }}>
+    <div class = "container" style={{ textAlign: 'center', padding: 20 }}>
       <h2>Local-First CRDT Chessboard</h2>
-      <p>Pick a color below, then click any square. No color = toggle black/white.</p>
+      <p>Pick a color below, then click any square</p>
 
       <ColorPicker selected={selectedColor} onSelect={setSelectedColor} />
 
