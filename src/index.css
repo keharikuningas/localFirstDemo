@@ -90,6 +90,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #0a1a3f, #102a5c);
 }
 
 .container {
