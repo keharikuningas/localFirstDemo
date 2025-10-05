@@ -95,3 +95,44 @@ body {
 .container {
   text-align: center; /* centers the text and buttons */
 }
+
+button {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+
+button {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.board-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.board-wrap > div {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden; /* keeps corners clean */
+}
+
+.color-button:hover {
+  transform: scale(1.15);
+  transition: transform 0.1s ease;
+}
+
+body {
+  background: linear-gradient(135deg, #f9fafc, #eef2f7);
+  font-family: 'Inter', sans-serif;
+}
+
+h2 {
+  letter-spacing: 0.5px;
+  color: #222;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
