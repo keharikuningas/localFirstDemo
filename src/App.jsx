@@ -32,6 +32,7 @@ export default function App() {
     gridTemplateColumns: "repeat(8, 40px)",
     gridTemplateRows: "repeat(8, 40px)",
     border: "2px solid black",
+    margin: "0 auto",
   }
 
   return (
