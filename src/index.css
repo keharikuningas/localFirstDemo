@@ -83,3 +83,15 @@ button:focus-visible {
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.06) inset;
 }
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center; /* centers the text and buttons */
+}
